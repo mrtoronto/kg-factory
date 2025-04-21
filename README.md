@@ -1,24 +1,34 @@
 # Molecular Biology Knowledge Graph Converter
 
-This script converts unstructured molecular biology text documents into a knowledge graph. The graph can be saved either as a JSON file or stored in a Neo4j database.
+This project converts PubMed articles into a structured knowledge graph. The workflow involves first scraping relevant articles from PubMed based on MeSH keywords, then converting them into a knowledge graph that can be saved as JSON or stored in a Neo4j database.
 
 ## Prerequisites
 
 1. Python 3.8 or higher
-2. OpenAI API key
-3. Neo4j database (optional - only if using Neo4j output)
+2. Poetry (Python dependency management)
+3. OpenAI API key
+4. Neo4j database (optional - only if using Neo4j output)
 
 ## Installation
 
-1. Install the required packages:
+1. Install Poetry if you haven't already:
 ```bash
-pip install -r requirements.txt
+curl -sSL https://install.python-poetry.org | python3 -
 ```
 
-2. Configure your settings:
+2. Generate the lock file and install project dependencies:
+```bash
+poetry lock
+poetry install
+```
+
+3. Configure your settings:
+   - Make a local_settings.py file with the following:
+     - `touch local_settings.py`
+     - `OPENAI_API_KEY`: Your OpenAI API key
+     - `YOUR_EMAIL`: Your email
    - Open `settings.py`
    - Update the following values:
-     - `OPENAI_API_KEY`: Your OpenAI API key
      - `OUTPUT_FORMAT`: Choose "json" or "neo4j"
      - If using Neo4j:
        - `NEO4J_PASSWORD`: Your Neo4j database password
@@ -28,11 +38,48 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run the script with the following command:
+The workflow consists of two main steps:
+
+### 1. Scraping PubMed Articles
+
+Use the PubMed scraper to search for articles based on MeSH keywords:
 
 ```bash
-python add_to_kg.py input_file.txt
+poetry run python pubmed_scraper.py "your_mesh_keyword" --max-results 10000
 ```
+
+For example:
+```bash
+poetry run python pubmed_scraper.py "running" --max-results 10000
+```
+
+This will create a JSON file containing the scraped articles. The filename will be displayed in the console logs, following the format: `pubmed_results_YYYYMMDD_HHMMSS.json`
+
+### 2. Creating the Knowledge Graph
+
+Once you have the PubMed results file, you can create the knowledge graph:
+
+```bash
+poetry run python add_to_kg.py your_pubmed_results_file.json
+```
+
+For example:
+```bash
+poetry run python add_to_kg.py pubmed_results_20250420_145233.json
+```
+
+## Performance Considerations
+
+### PubMed Rate Limits
+- Without a PubMed API key: Limited to 3 articles per second
+- With a PubMed API key: Limited to 10 articles per second
+
+### Processing Times
+- Knowledge graph generation: Approximately 20 seconds per article (using GPT to extract entities and relationships)
+
+Please consider these limitations when planning your queries. For example, processing 1,000 articles would take:
+- Download time: ~5.5 minutes with API key, ~5.5 minutes without
+- Processing time: ~5.5 hours for knowledge graph generation
 
 ## Output Formats
 
