@@ -15,6 +15,8 @@ import random
 from tqdm.auto import tqdm
 import sys
 
+from settings import DEFAULT_EMAIL, DEFAULT_API_KEY
+
 # Configure logging to work nicely with tqdm
 class TqdmLoggingHandler(logging.Handler):
     def __init__(self, level=logging.NOTSET):
@@ -35,10 +37,6 @@ logging.basicConfig(
     handlers=[TqdmLoggingHandler()]
 )
 logger = logging.getLogger(__name__)
-
-# Global settings
-DEFAULT_EMAIL = "matt.toronto97@gmail.com"
-DEFAULT_API_KEY = None  # Set your API key here or use environment variable
 
 class RateLimiter:
     """Process-safe rate limiter with jitter"""

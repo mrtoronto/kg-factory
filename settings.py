@@ -1,4 +1,4 @@
-from local_settings import OPENAI_API_KEY
+from local_settings import OPENAI_API_KEY, YOUR_EMAIL
 
 # Output Settings
 OUTPUT_FORMAT = "json"  # Options: "json", "neo4j"
@@ -34,3 +34,6 @@ mesh_config = get_mesh_config(CURRENT_MESH_TERM)
 # Node Types, Relationships, and Properties are now dynamically set based on MeSH term
 ALLOWED_NODE_TYPES = mesh_config.allowed_nodes
 NODE_PROPERTIES = mesh_config.node_properties
+
+DEFAULT_EMAIL = YOUR_EMAIL
+DEFAULT_API_KEY = None  # Set your API key here or use environment variable
