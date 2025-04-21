@@ -1,0 +1,52 @@
+{
+    "mesh_term": {
+        "type": "string",
+        "description": "The MeSH term this configuration is for"
+    },
+    "allowed_nodes": {
+        "type": "array",
+        "items": {
+            "type": "string"
+        },
+        "description": "List of allowed node types in the knowledge graph"
+    },
+    "allowed_relationships": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "source": "string",
+                "type": "string",
+                "target": "string"
+            }
+        },
+        "description": "List of allowed relationships between nodes"
+    },
+    "node_properties": {
+        "type": "array",
+        "items": {
+            "type": "string"
+        },
+        "description": "List of properties that can be extracted for nodes"
+    },
+    "extraction_prompt": {
+        "type": "string",
+        "description": "Custom prompt template for extracting information for this MeSH term"
+    },
+    "description": {
+        "type": "string",
+        "description": "Description of what this configuration aims to capture"
+    },
+    "examples": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "text": "string",
+                "nodes": "array",
+                "relationships": "array"
+            }
+        },
+        "description": "Example extractions to guide the LLM"
+    }
+} 

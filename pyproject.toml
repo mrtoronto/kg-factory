@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "pubmed-scraper"
+version = "0.1.0"
+description = "A tool to scrape PubMed data using MeSH terms"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+biopython = "^1.81"
+requests = "^2.31.0"
+tqdm = "^4.67.1"
+rich = "^14.0.0"
+langchain-experimental = "^0.3.4"
+langchain-openai = "^0.3.14"
+langchain-core = "^0.3.54"
+langchain-neo4j = "^0.4.0"
+tenacity = "^9.1.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.2.0"
+pytest = "^8.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

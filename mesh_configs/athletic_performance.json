@@ -1,0 +1,61 @@
+{
+  "mesh_term": "Athletic Performance",
+  "allowed_nodes": [
+    "Athlete",
+    "Sport",
+    "Training Program",
+    "Physiological Parameter",
+    "Nutritional Factor",
+    "Psychological Factor",
+    "Environmental Condition",
+    "Performance Metric",
+    "Injury",
+    "Biomechanical Analysis"
+  ],
+  "node_properties": [
+    "Name",
+    "Type",
+    "Description",
+    "Measurement Unit",
+    "Value",
+    "Date",
+    "Intensity",
+    "Duration",
+    "Frequency",
+    "Condition",
+    "Outcomes"
+  ],
+  "extraction_prompt": "Extract information related to 'Athletic Performance' from the text. Focus on identifying entities such as Athletes, Sports, Training Programs, and Performance Metrics. For each entity, capture relevant properties like Name, Description, Value, and Measurement Unit. Look for relationships between entities, such as how Training Programs influence Performance Metrics or how Physiological Parameters affect an Athlete's performance. Pay attention to specific aspects such as environmental conditions, nutritional factors, psychological influences, and injuries related to performance. Also, note any measurements taken, their units, and any temporal information provided (e.g., when measurements were taken or the duration of training).",
+  "description": "This configuration aims to capture detailed information about factors influencing athletic performance, including physical, psychological, and environmental variables, as well as the relationships between these factors and performance outcomes.",
+  "examples": [
+    {
+      "Athlete": {
+        "Name": "John Doe",
+        "Type": "Runner",
+        "Performance": {
+          "Metric": "Marathon Time",
+          "Value": "2:30:00",
+          "Measurement Unit": "Hours"
+        },
+        "Training Program": {
+          "Description": "Intensive 12-week marathon training plan",
+          "Duration": "12 weeks",
+          "Intensity": "High"
+        }
+      }
+    },
+    {
+      "Training Program": {
+        "Name": "Strength Training for Cyclists",
+        "Description": "A program designed to enhance cycling power and endurance",
+        "Frequency": "3 times per week",
+        "Duration": "8 weeks"
+      },
+      "Outcome": {
+        "Metric": "Power Output",
+        "Value": "350",
+        "Measurement Unit": "Watts"
+      }
+    }
+  ]
+}
